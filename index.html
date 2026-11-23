@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pajriee — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0">
+  <style>
+    :root {
+      --bg: #F5F8FD;
+      --surface: #E7EFFA;
+      --surface-high: #D8E4F4;
+      --primary: #1B4D8F;
+      --on-primary: #FFFFFF;
+      --primary-container: #D3E3FA;
+      --on-primary-container: #101D2E;
+      --text: #141C26;
+      --text-sub: #475569;
+      --outline: #64748B;
+      --outline-variant: #C7D5E6;
+      --ease: cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    html { background: var(--bg); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      position: relative;
+      font-family: 'Work Sans', sans-serif;
+      background: transparent;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -24px;
+      z-index: -2;
+      background: url('https://i.pinimg.com/1200x/ee/88/98/ee88984781589d8e29fa920e6bb8ecc7.jpg') center / cover no-repeat fixed;
+      filter: blur(6px);
+      transform: scale(1.03);
+      opacity: 0.88;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(245, 248, 253, 0.28);
+      pointer-events: none;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    .copy-btn:focus-visible { border-radius: 50%; }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      font-feature-settings: 'liga';
+    }
+
+    .card {
+      width: min(100% - 32px, 720px);
+      margin: clamp(24px, 6vw, 72px) auto 40px;
+      background: rgba(231, 239, 250, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 30px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        0 2px 6px rgba(16, 29, 46, 0.08),
+        0 20px 44px rgba(16, 29, 46, 0.22),
+        0 52px 100px rgba(16, 29, 46, 0.16);
+      backdrop-filter: blur(20px) saturate(115%);
+      -webkit-backdrop-filter: blur(20px) saturate(115%);
+      overflow: hidden;
+      animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .card-head {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      column-gap: 22px;
+      align-items: start;
+      text-align: left;
+      padding: 32px 30px 28px;
+      border-bottom: 1px solid var(--outline-variant);
+    }
+
+    .avatar {
+      grid-row: 1 / span 3;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--bg);
+      box-shadow: 0 10px 28px rgba(27, 77, 143, 0.2);
+    }
+
+    .name {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.4rem, 8vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .tagline {
+      margin-top: 8px;
+      color: var(--text-sub);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border: 1px solid var(--outline-variant);
+      border-radius: 14px;
+      background: var(--bg);
+      font-size: 0.74rem;
+      font-weight: 600;
+      transition: background-color 0.25s var(--ease);
+    }
+
+    .chip:hover { background: var(--primary-container); }
+    .chip .material-symbols-outlined { font-size: 17px; color: var(--primary); }
+
+    .accordion { display: block; }
+
+    .acc-item + .acc-item { border-top: 1px solid var(--outline-variant); }
+
+    .acc-trigger {
+      display: grid;
+      grid-template-columns: 46px 1fr auto auto;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 17px 30px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-align: left;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+    }
+
+    .acc-trigger:hover { background: rgba(27, 77, 143, 0.05); color: var(--primary); }
+
+    .acc-num {
+      color: rgba(27, 77, 143, 0.5);
+      font: 700 1.35rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .acc-count {
+      display: grid;
+      place-items: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--primary-container);
+      color: var(--primary);
+      font: 600 0.7rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .acc-icon {
+      color: var(--primary);
+      transition: transform 0.4s var(--ease);
+    }
+
+    .acc-item.open .acc-icon { transform: rotate(180deg); }
+    .acc-item.open .acc-trigger { box-shadow: inset 3px 0 0 var(--primary); }
+
+    .acc-panel {
+      display: grid;
+      grid-template-rows: 1fr;
+    }
+
+    .acc-ready .acc-panel {
+      transition: grid-template-rows 420ms var(--ease);
+    }
+
+    .acc-item:not(.open) .acc-panel { grid-template-rows: 0fr; }
+
+    .acc-inner { min-height: 0; overflow: hidden; }
+
+    .acc-body { padding: 16px 28px 26px; }
+
+    .project-panel {
+      padding: 16px;
+      border: 1px solid var(--outline-variant);
+      border-left: 3px solid var(--primary);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 8px 22px rgba(16, 29, 46, 0.07);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .project-panel:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(16, 29, 46, 0.12); }
+
+    .project-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .project-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--primary);
+      transition: transform 0.3s var(--ease);
+    }
+
+    .project-logo { display: block; width: 29px; height: 29px; }
+
+    .project-row:hover .project-icon { transform: rotate(-6deg); }
+
+    .project-copy { flex: 1; min-width: 180px; }
+
+    .project-copy h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .project-copy p { margin-top: 2px; color: var(--text-sub); font-size: 0.88rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s var(--ease), background-color 0.25s var(--ease);
+    }
+
+    .btn:hover { border-radius: 14px; transform: translateY(-2px); background: #123A6E; }
+    .btn:active { transform: scale(0.97); }
+    .btn .material-symbols-outlined { font-size: 18px; }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--outline-variant);
+      color: var(--text-sub);
+      font: 500 0.72rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .project-meta .material-symbols-outlined { font-size: 18px; color: var(--primary); }
+
+    .repo-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 14px;
+      border-right: 1px solid var(--outline-variant);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border-right: 0; }
+    .stat .material-symbols-outlined { font-size: 16px; color: var(--primary); }
+    .stat b {
+      color: var(--text);
+      font: 700 0.82rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .lang-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .lang-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .chip:hover .lang-icon { transform: rotate(-12deg) scale(1.22); }
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      transition: transform 0.25s var(--ease);
+    }
+
+    .social-row + .social-row { border-top: 1px solid var(--outline-variant); }
+    .social-row:hover { transform: translateX(3px); }
+
+    .social-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      min-width: 0;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .social-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--outline-variant);
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .social-icon img { width: 21px; height: 21px; }
+
+    .social-handle { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; }
+    .social-service { color: var(--text-sub); font-size: 0.82rem; }
+
+    .social-actions { display: flex; align-items: center; gap: 6px; }
+
+    .copy-btn {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--outline-variant);
+      border-radius: 50%;
+      background: var(--bg);
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+    }
+
+    .copy-btn .material-symbols-outlined { font-size: 18px; }
+    .copy-btn:hover { background: var(--primary-container); color: var(--primary); }
+    .social-link { display: grid; place-items: center; color: var(--text-sub); }
+    .social-arrow { font-size: 22px; transition: transform 0.3s var(--ease), color 0.3s var(--ease); }
+    .social-row:hover .social-arrow { transform: translate(3px, -3px); color: var(--primary); }
+
+    .card-foot {
+      padding: 16px 28px 20px;
+      border-top: 1px solid var(--outline-variant);
+      color: var(--text-sub);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      z-index: 9999;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+
+    #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .card-head {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 80ms;
+    }
+
+    .acc-item:nth-child(1) .acc-trigger {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 170ms;
+    }
+
+    .acc-item:nth-child(2) .acc-trigger {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 240ms;
+    }
+
+    .acc-item:nth-child(3) .acc-trigger {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 310ms;
+    }
+
+    .acc-item:first-child .acc-body {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 390ms;
+    }
+
+    .acc-item.reveal .acc-body {
+      animation: panelIn 0.25s var(--ease) both;
+    }
+
+    @media (max-width: 600px) {
+      .card { width: calc(100% - 24px); margin: 16px auto 24px; border-radius: 24px; }
+      .card-head { grid-template-columns: 1fr; padding: 24px 20px 20px; }
+      .avatar { grid-row: auto; width: 84px; height: 84px; }
+      .name { margin-top: 14px; }
+      .tagline { font-size: 0.86rem; }
+      .chip { font-size: 0.7rem; padding: 6px 9px; }
+      .acc-trigger { padding: 15px 18px; gap: 10px; font-size: 0.86rem; }
+      .acc-body { padding: 14px 18px 20px; }
+      .social-left { gap: 10px; }
+      .stat { padding: 0 9px; font-size: 0.68rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <main class="card">
+    <header class="card-head">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/348247796?v=4" alt="">
+      <h1 class="name">Pajriee</h1>
+      <p class="tagline">just an nonexistance · 17yo</p>
+      <div class="badges">
+        <span class="chip"><span class="material-symbols-outlined" aria-hidden="true">location_on</span>Indonesia</span>
+        <span class="chip"><span class="material-symbols-outlined" aria-hidden="true">school</span>Student</span>
+        <span class="chip"><span class="material-symbols-outlined" aria-hidden="true">code</span>Developer</span>
+      </div>
+    </header>
+
+    <div class="accordion">
+      <section class="acc-item open" id="projects">
+        <h2>
+          <button class="acc-trigger" type="button" id="trigger-projects" aria-expanded="true" aria-controls="panel-projects">
+            <span class="acc-num">01</span>
+            <span class="acc-label">Project</span>
+            <span class="acc-count">1</span>
+            <span class="material-symbols-outlined acc-icon" aria-hidden="true">expand_more</span>
+          </button>
+        </h2>
+        <div class="acc-panel" id="panel-projects" role="region" aria-labelledby="trigger-projects">
+          <div class="acc-inner">
+            <div class="acc-body">
+              <div class="project-panel">
+                <div class="project-row">
+                  <span class="project-icon" aria-hidden="true"><img class="project-logo" src="https://realidkroo.github.io/Mochy-Music/assets/img/logo.svg" alt=""></span>
+                  <div class="project-copy">
+                    <h3>Mochy Music</h3>
+                    <p>A modern, cool, sleek music player. made with &lt;3</p>
+                  </div>
+                  <a class="btn" href="https://github.com/realidkroo/Mochy-Music" target="_blank" rel="noopener noreferrer">
+                    <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+                <div class="project-meta">
+                  <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+                  <span>github.com/realidkroo/Mochy-Music</span>
+                </div>
+                <div class="repo-stats">
+                  <span class="stat"><span class="material-symbols-outlined" aria-hidden="true">star</span><b id="repo-stars">2238</b> stars</span>
+                  <span class="stat"><span class="material-symbols-outlined" aria-hidden="true">fork_right</span><b id="repo-forks">115</b> forks</span>
+                  <span class="stat"><span class="material-symbols-outlined" aria-hidden="true">download</span><b id="repo-downloads">152,926</b> downloads</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="acc-item open" id="languages">
+        <h2>
+          <button class="acc-trigger" type="button" id="trigger-languages" aria-expanded="true" aria-controls="panel-languages">
+            <span class="acc-num">02</span>
+            <span class="acc-label">Languages</span>
+            <span class="acc-count">6</span>
+            <span class="material-symbols-outlined acc-icon" aria-hidden="true">expand_more</span>
+          </button>
+        </h2>
+        <div class="acc-panel" id="panel-languages" role="region" aria-labelledby="trigger-languages">
+          <div class="acc-inner">
+            <div class="acc-body">
+              <div class="lang-grid">
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/kotlin/1B4D8F" alt="">Kotlin</span>
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/rust/1B4D8F" alt="">Rust</span>
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/javascript/1B4D8F" alt="">JavaScript</span>
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/nodedotjs/1B4D8F" alt="">Node.js</span>
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/html5/1B4D8F" alt="">HTML</span>
+                <span class="chip"><img class="lang-icon" src="https://cdn.simpleicons.org/css/1B4D8F" alt="">CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="acc-item open" id="connect">
+        <h2>
+          <button class="acc-trigger" type="button" id="trigger-connect" aria-expanded="true" aria-controls="panel-connect">
+            <span class="acc-num">03</span>
+            <span class="acc-label">Connect</span>
+            <span class="acc-count">3</span>
+            <span class="material-symbols-outlined acc-icon" aria-hidden="true">expand_more</span>
+          </button>
+        </h2>
+        <div class="acc-panel" id="panel-connect" role="region" aria-labelledby="trigger-connect">
+          <div class="acc-inner">
+            <div class="acc-body">
+              <a class="social-row" href="https://github.com/Jrieed" target="_blank" rel="noopener noreferrer">
+                <span class="social-left">
+                  <span class="social-icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/github/1D1B20" alt=""></span>
+                  <span>
+                    <span class="social-handle" style="display:block">Jrieed</span>
+                    <span class="social-service" style="display:block">GitHub</span>
+                  </span>
+                </span>
+                <span class="material-symbols-outlined social-arrow" aria-hidden="true">arrow_outward</span>
+              </a>
+              <div class="social-row">
+                <a class="social-left" href="https://discord.com/users/_jrieeed" target="_blank" rel="noopener noreferrer">
+                  <span class="social-icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/discord/1B4D8F" alt=""></span>
+                  <span>
+                    <span class="social-handle" style="display:block">_jrieeed</span>
+                    <span class="social-service" style="display:block">Discord</span>
+                  </span>
+                </a>
+                <span class="social-actions">
+                  <button class="copy-btn" type="button" data-copy="_jrieeed" aria-label="Salin username Discord">
+                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                  </button>
+                  <a class="social-link" href="https://discord.com/users/_jrieeed" target="_blank" rel="noopener noreferrer" aria-label="Buka Discord">
+                    <span class="material-symbols-outlined social-arrow" aria-hidden="true">arrow_outward</span>
+                  </a>
+                </span>
+              </div>
+              <div class="social-row">
+                <a class="social-left" href="https://t.me/Pajriiii" target="_blank" rel="noopener noreferrer">
+                  <span class="social-icon" aria-hidden="true"><img src="https://cdn.simpleicons.org/telegram/1B4D8F" alt=""></span>
+                  <span>
+                    <span class="social-handle" style="display:block">Pajriiii</span>
+                    <span class="social-service" style="display:block">t.me/Pajriiii</span>
+                  </span>
+                </a>
+                <span class="social-actions">
+                  <button class="copy-btn" type="button" data-copy="Pajriiii" aria-label="Salin username Telegram">
+                    <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+                  </button>
+                  <a class="social-link" href="https://t.me/Pajriiii" target="_blank" rel="noopener noreferrer" aria-label="Buka Telegram">
+                    <span class="material-symbols-outlined social-arrow" aria-hidden="true">arrow_outward</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="card-foot">© 2026 Pajriee</div>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.acc-item'));
+
+      function setState(item, open) {
+        var trigger = item.querySelector('.acc-trigger');
+        var panel = item.querySelector('.acc-panel');
+        item.classList.toggle('open', open);
+        trigger.setAttribute('aria-expanded', String(open));
+        panel.inert = !open;
+      }
+
+      items.forEach(function (item, index) { setState(item, index === 0); });
+      document.body.classList.add('acc-ready');
+
+      items.forEach(function (item) {
+        item.querySelector('.acc-trigger').addEventListener('click', function () {
+          var willOpen = !item.classList.contains('open');
+          items.forEach(function (other) {
+            setState(other, other === item && willOpen);
+            other.classList.remove('reveal');
+          });
+          if (willOpen) item.classList.add('reveal');
+        });
+      });
+
+      var toast = document.getElementById('toast');
+      var toastTimer;
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1600);
+      }
+
+      document.querySelectorAll('[data-copy]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          if (!navigator.clipboard) {
+            showToast('Gagal menyalin');
+            return;
+          }
+          navigator.clipboard.writeText(button.getAttribute('data-copy'))
+            .then(function () { showToast('Tersalin'); })
+            .catch(function () { showToast('Gagal menyalin'); });
+        });
+      });
+
+      function fetchJson(url) {
+        return fetch(url, { cache: 'no-store' }).then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.json();
+        });
+      }
+
+      function loadRepoStats() {
+        if (!window.fetch) return;
+
+        fetchJson('https://api.github.com/repos/realidkroo/Mochy-Music')
+          .then(function (data) {
+            var stars = document.getElementById('repo-stars');
+            var forks = document.getElementById('repo-forks');
+            if (stars) stars.textContent = Number(data.stargazers_count).toLocaleString('id-ID');
+            if (forks) forks.textContent = Number(data.forks_count).toLocaleString('id-ID');
+          })
+          .catch(function () { /* fallback stars dan forks tetap tampil */ });
+
+        fetchJson('https://api.github.com/repos/realidkroo/Mochy-Music/releases?per_page=100')
+          .then(function (list) {
+            var total = 0;
+            list.forEach(function (release) {
+              (release.assets || []).forEach(function (asset) {
+                total += Number(asset.download_count) || 0;
+              });
+            });
+            var downloads = document.getElementById('repo-downloads');
+            if (downloads && total) downloads.textContent = total.toLocaleString('en-US');
+          })
+          .catch(function () { /* fallback downloads tetap tampil */ });
+      }
+      loadRepoStats();
+      setInterval(loadRepoStats, 300000);
+    })();
+  </script>
+</body>
+</html>
