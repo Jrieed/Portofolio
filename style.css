@@ -214,7 +214,7 @@
 
     .snow-drift { opacity: 0.95; }
     .snow-drift--1 { left: -10px; bottom: 0; width: 128px; height: 48px; animation: snowDrift 8s ease-in-out infinite; }
-    .snow-drift--2 { left: 30%; bottom: -3px; width: 94px; height: 38px; animation: snowDrift 9s ease-in-out infinite -3s; }
+    .snow-drift--2 { left: 30%; bottom: 0; width: 94px; height: 38px; animation: snowDrift 9s ease-in-out infinite -3s; }
     .snow-drift--3 { right: -12px; bottom: 0; width: 116px; height: 44px; animation: snowDrift 8.5s ease-in-out infinite -5s; }
 
     @keyframes snowFallA {
