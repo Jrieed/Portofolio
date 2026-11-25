@@ -158,7 +158,7 @@
     .chip:hover { background: var(--primary-container); }
     .chip .material-symbols-outlined { font-size: 17px; color: var(--primary); }
 
-    .badges .chip, .reads-chips .chip {
+    .badges .chip {
       --tilt: -1deg;
       position: relative;
       border: 1px solid var(--outline-variant);
@@ -174,12 +174,10 @@
                   background-color 0.25s var(--ease);
     }
 
-    .badges .chip:nth-child(1), .badges .chip:nth-child(3),
-    .reads-chips .chip:nth-child(2) { --tilt: -1deg; }
-    .badges .chip:nth-child(2),
-    .reads-chips .chip:nth-child(1), .reads-chips .chip:nth-child(3) { --tilt: 1deg; }
+    .badges .chip:nth-child(1), .badges .chip:nth-child(3) { --tilt: -1deg; }
+    .badges .chip:nth-child(2) { --tilt: 1deg; }
 
-    .badges .chip:hover, .reads-chips .chip:hover {
+    .badges .chip:hover {
       background: var(--primary-container);
       box-shadow: 3px 3px 0 #D3E3FA;
       transform: rotate(var(--tilt)) translateY(-1px);
@@ -551,7 +549,7 @@
       pointer-events: none;
     }
 
-    .badges .chip::after, .reads-chips .chip::after { content: none; }
+    .badges .chip::after { content: none; }
     .lang-grid .chip::after { content: none; }
     .btn::after { left: 20px; right: 20px; transform: rotate(-2deg); }
     .copy-btn::after { left: 9px; right: 9px; transform: rotate(3deg); }
@@ -571,9 +569,6 @@
 
     .btn { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 340ms backwards; }
     .copy-btn { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 400ms backwards; }
-
-    .reads-note { color: var(--text-sub); font-size: 0.84rem; font-style: italic; }
-    .reads-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 
     @keyframes tapeSet {
       from { opacity: 0; transform: rotate(-5deg) translateY(2px); }
