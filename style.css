@@ -203,6 +203,12 @@
     .snow-cap--3 { left: 10px; top: -11px; width: 44px; height: 13px; transform: rotate(3deg); }
     .snow-cap--4 { right: 3px; top: -6px; width: 26px; height: 8px; transform: rotate(-5deg); }
     .snow-cap--5 { left: 5px; top: -9px; width: 36px; height: 11px; transform: rotate(4deg); }
+    .snow-cap--lang-1 { left: 3px; top: -6px; width: 28px; height: 9px; transform: rotate(-4deg); }
+    .snow-cap--lang-2 { right: 2px; top: -5px; width: 24px; height: 8px; transform: rotate(5deg); }
+    .snow-cap--lang-3 { left: 8px; top: -8px; width: 30px; height: 10px; transform: rotate(-2deg); }
+    .snow-cap--lang-4 { right: 4px; top: -7px; width: 26px; height: 8px; transform: rotate(4deg); }
+    .snow-cap--lang-5 { left: 2px; top: -6px; width: 22px; height: 7px; transform: rotate(-5deg); }
+    .snow-cap--lang-6 { right: 3px; top: -8px; width: 28px; height: 9px; transform: rotate(3deg); }
 
     .snow-flake { opacity: 0.72; }
     .snow-flake--1 { left: 6%; top: 24%; width: 12px; height: 12px; animation: snowFallA 6s ease-in-out infinite; }
@@ -303,7 +309,31 @@
 
     .acc-inner { min-height: 0; overflow: hidden; }
 
-    .acc-body { padding: 16px 28px 26px; }
+    .acc-body {
+      position: relative;
+      padding: 16px 28px 26px;
+    }
+
+    .acc-body > :not(.snow) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .snow-panel-flake { opacity: 0.7; }
+    .snow-panel-flake--1 { left: 8%; top: 12%; width: 10px; height: 10px; animation: snowFallA 7s ease-in-out infinite; }
+    .snow-panel-flake--2 { right: 12%; top: 26%; width: 8px; height: 11px; animation: snowFallC 6.4s ease-in-out infinite -2s; }
+    .snow-panel-flake--3 { left: 16%; top: 18%; width: 12px; height: 12px; animation: snowFallB 8.2s ease-in-out infinite -1s; }
+    .snow-panel-flake--4 { right: 8%; top: 54%; width: 7px; height: 9px; animation: snowFallA 5.8s ease-in-out infinite -3s; }
+    .snow-panel-flake--5 { left: 6%; top: 44%; width: 11px; height: 11px; animation: snowFallC 7.4s ease-in-out infinite -2s; }
+    .snow-panel-flake--6 { right: 16%; top: 68%; width: 9px; height: 12px; animation: snowFallB 6.8s ease-in-out infinite -4s; }
+    .snow-panel-flake--7 { left: 12%; top: 30%; width: 13px; height: 13px; animation: snowFallA 8.6s ease-in-out infinite -1s; }
+    .snow-panel-flake--8 { right: 10%; top: 16%; width: 8px; height: 10px; animation: snowFallC 6.2s ease-in-out infinite -3s; }
+
+    .snow-panel-drift { opacity: 0.88; }
+    .snow-panel-drift--1 { left: -6px; bottom: 0; width: 104px; height: 40px; animation: snowDrift 8s ease-in-out infinite; }
+    .snow-panel-drift--2 { left: 34%; bottom: 0; width: 86px; height: 34px; animation: snowDrift 9s ease-in-out infinite -3s; }
+    .snow-panel-drift--3 { right: -4px; bottom: 0; width: 96px; height: 36px; animation: snowDrift 8.5s ease-in-out infinite -5s; }
+    .snow-panel-drift--4 { left: 18%; bottom: 0; width: 110px; height: 42px; animation: snowDrift 9.5s ease-in-out infinite -2s; }
 
     .project-panel {
       padding: 16px;
@@ -522,7 +552,7 @@
     }
 
     .badges .chip::after, .reads-chips .chip::after { content: none; }
-    .lang-grid .chip::after { left: 12px; right: 12px; transform: rotate(2deg); }
+    .lang-grid .chip::after { content: none; }
     .btn::after { left: 20px; right: 20px; transform: rotate(-2deg); }
     .copy-btn::after { left: 9px; right: 9px; transform: rotate(3deg); }
 
