@@ -395,6 +395,7 @@
     .hello {
       position: relative;
       display: inline-block;
+      justify-self: start;
       margin-bottom: 2px;
       color: var(--primary);
       font: 800 2rem/1 'Outfit', sans-serif;
@@ -417,8 +418,10 @@
 
     .hello-prefix { font-size: 0.62em; font-weight: 700; }
 
-    .chip, .btn, .copy-btn { position: relative; }
-    .chip, .btn, .copy-btn { box-shadow: 2px 2px 0 #D3E3FA; }
+    .chip, .btn, .copy-btn {
+      position: relative;
+      box-shadow: 2px 2px 0 #D3E3FA;
+    }
 
     .chip::after, .btn::after, .copy-btn::after {
       content: '';
@@ -446,6 +449,7 @@
       transform: rotate(-2deg) translateY(-1px);
       box-shadow: 3px 3px 0 #D3E3FA;
     }
+
     .btn:active { transform: rotate(-2deg) scale(0.97); box-shadow: 1px 1px 0 #D3E3FA; }
 
     .badges .chip:nth-child(1) { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 160ms backwards; }
@@ -526,6 +530,11 @@
     .acc-item:nth-child(3) .acc-trigger {
       animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
       animation-delay: 310ms;
+    }
+
+    .acc-item:nth-child(4) .acc-trigger {
+      animation: riseIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 380ms;
     }
 
     .acc-item:first-child .acc-body {
