@@ -486,7 +486,6 @@
     }
 
     .social-icon img { width: 21px; height: 21px; }
-    .igloo-logo { border-radius: 50%; }
 
     .social-handle { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; }
     .social-service { color: var(--text-sub); font-size: 0.82rem; }
