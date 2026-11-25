@@ -126,6 +126,7 @@
     }
 
     .badges {
+      grid-column: 2;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
@@ -148,6 +149,33 @@
 
     .chip:hover { background: var(--primary-container); }
     .chip .material-symbols-outlined { font-size: 17px; color: var(--primary); }
+
+    .badges .chip, .reads-chips .chip {
+      --tilt: -1deg;
+      position: relative;
+      border: 1px solid var(--outline-variant);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      background: var(--bg);
+      box-shadow: 2px 2px 0 #D3E3FA;
+      font: 700 0.7rem/1 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transform: rotate(var(--tilt));
+      transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease),
+                  background-color 0.25s var(--ease);
+    }
+
+    .badges .chip:nth-child(1), .badges .chip:nth-child(3),
+    .reads-chips .chip:nth-child(2) { --tilt: -1deg; }
+    .badges .chip:nth-child(2),
+    .reads-chips .chip:nth-child(1), .reads-chips .chip:nth-child(3) { --tilt: 1deg; }
+
+    .badges .chip:hover, .reads-chips .chip:hover {
+      background: var(--primary-container);
+      box-shadow: 3px 3px 0 #D3E3FA;
+      transform: rotate(var(--tilt)) translateY(-1px);
+    }
 
     .accordion { display: block; }
 
@@ -433,9 +461,8 @@
       pointer-events: none;
     }
 
-    .badges .chip::after { left: 14px; right: 14px; transform: rotate(-4deg); }
+    .badges .chip::after, .reads-chips .chip::after { content: none; }
     .lang-grid .chip::after { left: 12px; right: 12px; transform: rotate(2deg); }
-    .reads-chips .chip::after { left: 10px; right: 10px; transform: rotate(-3deg); }
     .btn::after { left: 20px; right: 20px; transform: rotate(-2deg); }
     .copy-btn::after { left: 9px; right: 9px; transform: rotate(3deg); }
 
@@ -452,9 +479,6 @@
 
     .btn:active { transform: rotate(-2deg) scale(0.97); box-shadow: 1px 1px 0 #D3E3FA; }
 
-    .badges .chip:nth-child(1) { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 160ms backwards; }
-    .badges .chip:nth-child(2) { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 220ms backwards; }
-    .badges .chip:nth-child(3) { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 280ms backwards; }
     .btn { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 340ms backwards; }
     .copy-btn { animation: tapeSet 0.22s cubic-bezier(0.16, 1, 0.3, 1) 400ms backwards; }
 
