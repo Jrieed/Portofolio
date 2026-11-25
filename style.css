@@ -573,6 +573,7 @@
     @media (max-width: 600px) {
       .card { width: calc(100% - 24px); margin: auto; border-radius: 24px; }
       .card-head { grid-template-columns: 1fr; padding: 24px 20px 20px; }
+      .badges { grid-column: 1; }
       .avatar { grid-row: auto; width: 84px; height: 84px; }
       .name { margin-top: 14px; }
       .tagline { font-size: 0.86rem; }
