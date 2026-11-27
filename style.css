@@ -26,7 +26,7 @@ html {
 body {
   position: relative;
   font-family: 'Work Sans', sans-serif;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   display: flex;
   min-height: 100vh;
@@ -36,14 +36,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pakai background langsung di body/layer ringan tanpa blur besar yang membebani HP */
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -16px;
   z-index: -2;
   background: url('https://i.pinimg.com/1200x/ee/88/98/ee88984781589d8e29fa920e6bb8ecc7.jpg') center / cover no-repeat;
-  opacity: 0.72;
+  filter: blur(4px);
+  transform: scale(1.02);
+  opacity: 0.88;
   pointer-events: none;
 }
 
@@ -52,7 +53,7 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: rgba(245, 248, 253, 0.42);
+  background: rgba(245, 248, 253, 0.28);
   pointer-events: none;
 }
 
@@ -89,10 +90,12 @@ a:focus-visible, button:focus-visible {
 .card {
   width: min(100% - 32px, 720px);
   margin: auto;
-  background: rgba(231, 239, 250, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: rgba(231, 239, 250, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 30px;
-  box-shadow: 0 18px 40px rgba(16, 29, 46, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 18px 42px rgba(16, 29, 46, 0.18);
   overflow: hidden;
   contain: layout style;
   animation: cardIn 0.45s var(--ease) both;
@@ -150,7 +153,7 @@ a:focus-visible, button:focus-visible {
   padding: 7px 11px;
   border: 1px solid var(--outline-variant);
   border-radius: 14px;
-  background: var(--bg);
+  background: rgba(245, 248, 253, 0.92);
   font-size: 0.74rem;
   font-weight: 600;
   transition: background-color 0.2s var(--ease), transform 0.16s var(--ease);
@@ -165,7 +168,7 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--outline-variant);
   border-left: 4px solid var(--primary);
   border-radius: 8px;
-  background: var(--bg);
+  background: rgba(245, 248, 253, 0.92);
   box-shadow: 2px 2px 0 #D3E3FA;
   font: 700 0.7rem/1 'Courier New', monospace;
   letter-spacing: 0.04em;
@@ -207,7 +210,6 @@ a:focus-visible, button:focus-visible {
 .snow-cap--lang-5 { left: 2px; top: -6px; width: 22px; height: 7px; transform: rotate(-5deg); }
 .snow-cap--lang-6 { right: 3px; top: -8px; width: 28px; height: 9px; transform: rotate(3deg); }
 
-/* Animasi salju dibatasi di desktop/perangkat yang tidak hemat baterai agar HP smooth */
 .snow-flake { opacity: 0.72; }
 .snow-flake--1 { left: 6%; top: 24%; width: 12px; height: 12px; }
 .snow-flake--2 { left: 18%; top: 12%; width: 8px; height: 8px; }
@@ -351,7 +353,7 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--outline-variant);
   border-left: 3px solid var(--primary);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.72);
   box-shadow: 0 6px 18px rgba(16, 29, 46, 0.06);
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
@@ -494,7 +496,7 @@ a:focus-visible, button:focus-visible {
   height: 42px;
   border: 1px solid var(--outline-variant);
   border-radius: 50%;
-  background: var(--bg);
+  background: rgba(245, 248, 253, 0.92);
 }
 
 .social-icon img { width: 21px; height: 21px; }
@@ -513,7 +515,7 @@ a:focus-visible, button:focus-visible {
   height: 34px;
   border: 1px solid var(--outline-variant);
   border-radius: 50%;
-  background: var(--bg);
+  background: rgba(245, 248, 253, 0.92);
   color: var(--text-sub);
   cursor: pointer;
   touch-action: manipulation;
@@ -631,4 +633,4 @@ a:focus-visible, button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-}
+                     }
